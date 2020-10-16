@@ -1,0 +1,19 @@
+footer {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .footer-container {
+    padding: 20px 0;
+    padding: 20px 0;
+    flex: 0 1 80%;
+  }
+  
+  .footer-container p {
+    color: var(--white-color);
+    line-height: 19px;
+    margin: 10px 0;
+    padding: 0;
+    font-size: 12px;
+    font-weight: normal;
+  }

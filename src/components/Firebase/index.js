@@ -6,13 +6,11 @@ import React, { Component, createContext } from "react";
 
 const googleProvider = new Firebase.auth.GoogleAuthProvider()
 
-
 const UserContext = createContext({ user: null });
 class UserProvider extends Component {
     state = {
         user: null
     };
-
 
     componentDidMount = () => {
         auth.onAuthStateChanged(userAuth => {
@@ -26,6 +24,7 @@ class UserProvider extends Component {
             </UserContext.Provider>
         );
     }
+    
 }
 
 function signInWithGoogle() {
@@ -47,11 +46,7 @@ function signInWithGoogle() {
     });
 }
 
+
+
 // export default signInWithGoogle
 export default { UserProvider, signInWithGoogle };
-
-
-
-
-
-

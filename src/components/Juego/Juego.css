@@ -1,0 +1,81 @@
+@media screen and (max-width: 540px) {
+    .container img {
+      width: 100%;
+      height: auto;
+    }
+  
+    .stepsBtnContainer {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 10px;
+      align-items: stretch;
+    }
+  
+    .success,
+    .failure,
+    .gameOver {
+      flex-basis: auto;
+    }
+  }
+  
+  @media all and (max-width: 850px) {
+    .welcomePage {
+      background-image: none;
+      flex-direction: column;
+      height: 300px;
+      justify-content: center;
+    }
+  
+    .leftBox {
+      display: flex;
+      flex: 0 1 40%;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .rightBox {
+      display: flex;
+      flex: 0 1 40%;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .btn-welcome {
+      margin-top: 0;
+      flex-basis: 300px;
+    }
+  }
+  
+  @media screen and (max-width: 980px) {
+    /* Change Modal elements */
+    .modalBody {
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 30px;
+    }
+  
+    .modalContainer {
+      flex: 0 1 90%;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  
+  @media screen and (max-width: 1110px) {
+     /* make container full width */
+     .container {
+      flex: 0 1 100%;
+    }
+  
+    /* hide all images on forms */
+    .formBoxLeftSignup,
+    .formBoxLeftLogin,
+    .formBoxLeftForget {
+      display: none;
+    }
+  
+    .formBoxRight {
+      flex: 0 1 100%;
+    }
+  
+  }

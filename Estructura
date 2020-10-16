@@ -6,17 +6,17 @@ App
 
         singnup
 
-        Main
+    Main
+
+       nav
 
        logout
 
        cargarDatos
 
        Juego
-
-       Nivel
-
-        ProgressBar 
+        refr
+        adv
 
 
         FinDeljuego

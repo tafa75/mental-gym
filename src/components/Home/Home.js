@@ -1,82 +1,108 @@
- 
-import React, { useRef, useEffect, useState, Fragment } from 'react'
-import { Link } from 'react-router-dom'
-import   './Home.css'
+
+// import React, { useRef, useEffect, useState, Fragment } from 'react'
+// import firebaseApp from "../Firebase/firebase"
+// import { Link } from 'react-router-dom'
+// import './Home.css'
+// import firebase from "firebase/app";
+// import "firebase/auth";
 
 
-const Home = () => {
-const [email, setEmail] = useState('');
-const [password, setPassword] = useState('');
-const [error, setError] = useState(null);
-const signInWithEmailAndPasswordHandler = 
-        (event,email, password) => {
-            event.preventDefault();
-};
 
-  const onChangeHandler = (event) => {
-      const {name, value} = event.currentTarget;
+// const Home = () => {
+//   const [email, setEmail] = useState('');
 
-      if(name === 'userEmail') {
-          setEmail(value);
-      }
-      else if(name === 'userPassword'){
-        setPassword(value);
-      }
-  };
+//   const [password, setPassword] = useState('');
+//   const [error, setError] = useState(null);
+//   const signInWithEmailAndPasswordHandler =
+//     (event, email, password) => {
+//       event.preventDefault();
+//     };
 
-return (
-<div className="mt-8">
-  <h1 className=" font-bold"></h1>
-  <div className="border border-blue">
-    {error !== null && <div className = "py">{error}</div>}
-    <form className="">
-     <br></br> <label htmlFor="userEmail" className="block">
-        Email:
-      </label>
-      <br></br><input
-        type="email"
-        className="my-1 p-1 w-full"
-        name="userEmail"
-        value = {email}
-        placeholder="exemple@gmail.com"
-        id="userEmail"
-        onChange = {(event) => onChangeHandler(event)}
-      />
-      <br></br><label htmlFor="userPassword" className="block">
-        Password:
-      </label>
-     
-      <br></br>  <input
-        type="password"
-        className="inputpw"
-        name="userPassword"
-        value = {password}
-        placeholder="Your Password"
-        id="userPassword"
-        onChange = {(event) => onChangeHandler(event)}
-      />
-     <br></br> <button className="bg-green-400 hover:bg-green-500 w-full py-2 text-white" onClick = {(event) => {signInWithEmailAndPasswordHandler(event, email, password)}}>
-        Sign in
-      </button>
-    </form>
-    <p className="text-center my-3">or</p>
-    <button
-      className="bg-red-500 hover:bg-red-600 w-full py-2 text-white">
-      Sign in with Google
-    </button>
-    <p className="text-center my-3">
-      Don't have an account?{" "}
-      <Link to="signUp" className="text-blue-500 hover:text-blue-600">
-        Sign up here
-      </Link>{" "}
-      <br />{" "}
-      <Link to = "passwordReset" className="text-blue-500 hover:text-blue-600">
-        Forgot Password?
-      </Link>
-    </p>
-  </div>
-</div>
-);
-};
+//   const onChangeHandler = (event) => {
+//     const { name, value } = event.currentTarget;
 
-export default Home
+//     if (name === 'userEmail') {
+//       setEmail(value);
+//     }
+//     else if (name === 'userPassword') {
+//       setPassword(value);
+//     }
+//   };
+
+//   function signUpwithGoogle(e) {
+
+//     const provider = new firebase.auth.GoogleAuthProvider()
+//     firebase.auth().signInWithPopup(provider).then(function (result) {
+//       // This gives you a Google Access Token. You can use it to access the Google API.
+//       var token = result.credential.accessToken;
+//       // The signed-in user info.
+//       var user = result.user;
+//       // ...
+//     }).catch(function (error) {
+//       // Handle Errors here.
+//       var errorCode = error.code;
+//       var errorMessage = error.message;
+//       // The email of the user's account used.
+//       var email = error.email;
+//       // The firebase.auth.AuthCredential type that was used.
+//       var credential = error.credential;
+//       // ...
+//     });
+//   }
+
+
+
+//   return (
+//     <div className="mt-8">
+
+//       <h1 className=" font-bold"></h1>
+//       <div className="border border-blue">
+//         {error !== null && <div className="py">{error}</div>}
+//         <form className="">
+//           <br></br> <label htmlFor="userEmail" className="block">
+//             Email:
+//       </label>
+//           <br></br><input
+//             type="email"
+//             className=" Rectangle"
+//             name="userEmail"
+//             value={email}
+//             placeholder="exemple@gmail.com"
+//             id="userEmail"
+//             onChange={(event) => onChangeHandler(event)}
+//           />
+//           <br></br><label htmlFor="userPassword" className="block">
+//             Password:
+//       </label>
+
+//           <br></br>  <input
+//             type="password"
+//             className=" input-pw"
+//             name="userPassword"
+//             value={password}
+//             placeholder="Your Password"
+//             id="userPassword"
+//             onChange={(event) => onChangeHandler(event)}
+//           />
+//           <br></br> <button className="Login" onClick={(event) => { signInWithEmailAndPasswordHandler(event, email, password) }}>
+//             conectarse
+//       </button>
+//         </form>
+//         <p className=" Login"></p>
+//         <button
+//           className="bg" onClick={signUpwithGoogle}>
+//           conectarse con Google
+//     </button>
+//         <p className="text-center my-3">
+//           no tienes cuenta?{" "}
+//           <br></br> <Link to="signUp" className="textRegistrarse">
+//             Registrarse
+//       </Link>{" "}
+//           <br />{" "}
+//         </p>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default Home

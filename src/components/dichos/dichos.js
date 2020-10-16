@@ -1,1 +1,0 @@
-//https://mental-gym.firebaseio.com/

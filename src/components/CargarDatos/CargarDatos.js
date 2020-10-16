@@ -1,13 +1,14 @@
 import React, { Fragment } from 'react'
-
-const CargarDatos = ({ CargarDatos, styling }) => {
+import '../CargarDatos/Cargardatos.css';
+const CargarDatos = (props) => {
     return (
         <Fragment>
             <div className="loader"></div>
-            <p style={styling}>
-                { CargarDatos }
-            </p>
-        </Fragment>
+
+            {/* <p style={styling}> */}
+            {props.loadingMsg}
+            {/* </p> */}
+        </Fragment >
     )
 }
 

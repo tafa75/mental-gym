@@ -1,3 +1,157 @@
-body{
-    background-color: rgb(18, 176, 224);
-}
+Login {
+    position: absolute;
+    width: 360px;
+    height: 420px;
+    left: 21px;
+    top: 396px;
+   }
+   Rectangle{
+  position: absolute;
+  width: 144px;
+  height: 60px;
+  left: 237px;
+  top: 736px;
+  border: 1px solid #FFFFFF;
+  box-sizing: border-box;
+  border-radius: 7px;
+  }
+  Login {
+  position: absolute;
+  width: 142px;
+  height: 40px;
+  left: 239px;
+  top: 746px;
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 33px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.015em;
+  color: #FFFFFF;
+  
+  }
+   Login {
+    position: absolute;
+    width: 338px;
+    height: 67px;
+    left: 21px;
+    top: 396px;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 36px;
+    line-height: 49px;
+    color: #2F80ED;
+   }
+   Register {
+     position: absolute;
+     width: 161px;
+     height: 34px;
+     left: 25px;
+     top: 782px;
+     font-family: Nunito;
+     font-style: normal;
+     font-weight: normal;
+     font-size: 16px;
+     line-height: 22px;
+     color: #FFFFFF;
+  
+   }
+   ForgotPassword{
+    position: absolute;
+    width: 161px;
+    height: 34px;
+    left: 217px;
+    top: 629px;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 19px;
+    color: #2F80ED;
+   }
+   Email 
+  {position: absolute;
+  width: 338px;
+  height: 20px;
+  left: 25px;
+  top: 473px;
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  color: #2F80ED;
+  }
+  Password 
+  {
+  position: absolute;
+  width: 338px;
+  height: 20px;
+  left: 25px;
+  top: 554px;
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 19px;
+  color: #2F80ED;
+  }
+   Rectangle1
+  {
+  position: absolute;
+  width: 309px;
+  height: 40px;
+  left: 25px;
+  top: 495px;
+  
+  border: 1px solid #2F80ED;
+  border-radius: 10px;
+  }
+   Rectangle2 
+  {
+  position: absolute;
+  width: 309px;
+  height: 40px;
+  left: 25px;
+  top: 576px;
+  border: 1px solid #2F80ED;
+  border-radius: 10px;
+  }
+  .linkContainer {
+    height: 50px;
+    margin-top: 35px;
+    padding-top: 15px;
+    border-top: 1px dashed var(--light-grey-color);
+  }
+  
+  .simpleLink {
+    color: var(--white-color);
+    text-decoration: none;
+    font-size: 12px;
+  }
+  
+  .simpleLink:hover {
+    color: var(--red-color);
+  }
+  .linkContainer {
+    height: 50px;
+    margin-top: 35px;
+    padding-top: 15px;
+    margin-bottom: 150px;
+    border-top: 1px dashed var(--light-grey-color);
+  }
+  
+  .simpleLink {
+    color: var(--white-color);
+    text-decoration: none;
+    font-size: 22px;
+
+  }
+
+  .simpleLink:hover {
+    color: var(--red-color);
+  }
