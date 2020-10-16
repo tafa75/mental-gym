@@ -53,7 +53,7 @@ const QuizOver = React.forwardRef((props, ref) => {
         } else {
 
             axios
-            .get(``)
+            .get(`https://tripu.herokuapp.com/l:6060/datos?cantidad=(cantidad de datos a devolver, máximo 585)`)
             .then( response => {
                 
                 setCharacterInfos(response.data);

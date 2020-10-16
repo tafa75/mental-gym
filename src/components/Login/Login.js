@@ -8,9 +8,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Login/Login.css';
 
 const Login = (props) => {
-
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    
+        const [email, setEmail] = useState('');
+        const [password, setPassword] = useState('');
 
     const firebaseContext = useContext(FirebaseContext);
     const [btn, setBtn] = useState(false);
@@ -25,11 +25,11 @@ const Login = (props) => {
     }, [password, email, btn])
 
     const handleSubmit = e => {
-        e.preventDefault();
-alert("hola")
+         //e.preventDefault();
+
         firebaseContext.loginUser(email, password)
             .then(user => {
-
+                
                 setEmail('');
                 setPassword('');
                 props.history.push('/Main');
@@ -42,65 +42,60 @@ alert("hola")
 
     }
     function authGoogle(e) {
-
+ 
         const provider = new firebase.auth.GoogleAuthProvider()
         firebase.auth().signInWithPopup(provider)
-            .then(function (result) {
+        .then(function (result) {
+            
+            var token = result.credential.accessToken;
+            var user = result.user;
+            props.history.push('/Main');
+        }).catch(function (error) {
+        
+            var errorCode = error.code;                                                                                                                                                                                             
 
-                var token = result.credential.accessToken;
-                var user = result.user;
-                props.history.push('/Main');
-            }).catch(function (error) {
+            var email = error.email;
+        
+            var credential = error.credential;
+        });
 
-                var errorCode = error.code;
-
-
-
-                var email = error.email;
-
-                var credential = error.credential;
-            });
-
-        // 
     }
 
     return (
         <div className="signUpLoginBox">
-            <div className="slContainer">
-                <div className="formBoxLeftLogin">
-                </div>
-                <div className="formBoxRight">
-                    <div className="formContent">
+ 
+           
+                <div className="formContent">
 
-                        {error !== '' && <span>{error.message}</span>}
+                    {error !== '' && <span>{error.message}</span>}
 
-                        <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit}>
 
-                            <h2>Connexion</h2>
+                        <h2>Connexion</h2>
 
-                            <div className="inputBox">
-                                <input onChange={e => setEmail(e.target.value)} value={email} type="email" autoComplete="off" required />
-                                <label htmlFor="email">Email</label>
-                            </div>
-
-                            <div className="inputBox">
-                                <input onChange={e => setPassword(e.target.value)} value={password} type="password" required />
-                                <label htmlFor="password">Contraseña</label>
-                            </div>
-                            
-                                <input type="submit" value="conexion"></input> 
-                            
-                            <button onClick={authGoogle}>Google</button>
-                        </form>
-                        <div className="linkContainer">
-                            <Link className="simpleLink" to="/signup">inscribete</Link>
-                            <br />
+                        <div className="inputBox">
+                            <input onChange={e => setEmail(e.target.value)}  type="email" autoComplete="off" required />
+                            <label htmlFor="email">Email</label>
                         </div>
+
+                        <div className="inputBox">
+                            <input onChange={e => setPassword(e.target.value)} type="password" required />
+                            <label htmlFor="password">Contraseña</label>
+                        </div>
+                        
+                            <input type="submit" value="conexion"></input> 
+                        
+                        <button onClick={authGoogle}>Google</button>
+                    </form>
+                    <div className="linkContainer">
+                        <Link className="simpleLink" to="/signup">inscribete</Link>
+                        <br />
                     </div>
                 </div>
             </div>
-        </div>
-    )
-}
+     
+
+)
+  }
 
 export default Login

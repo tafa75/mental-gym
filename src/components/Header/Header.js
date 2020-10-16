@@ -3,11 +3,11 @@ import { Link, withRouter } from "react-router-dom"
 import '../Header/Header.css';
 const Header = () => {
     return (
-        <headder>
+        <header>
             <div className="banner-container">
-                <h1><Link to="/">Mental Gym</Link></h1>
+                <h1>Mental Gym</h1>
             </div>
-        </headder>
+        </header>
     )
 }
 

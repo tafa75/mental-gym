@@ -23,3 +23,425 @@ App
         
     
     footer
+
+
+
+
+
+    /* Register */
+
+position: relative;
+width: 411px;
+height: 823px;
+
+background: #FFFFFF;
+box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.3);
+border-radius: 30px;
+
+
+/* Background */
+
+position: absolute;
+width: 768.62px;
+height: 1167.93px;
+left: -171.14px;
+top: -155.44px;
+
+
+
+/* Rectangle 2 */
+
+position: absolute;
+width: 634.41px;
+height: 438.42px;
+left: 48.07px;
+top: -155.44px;
+
+background: rgba(47, 128, 237, 0.5);
+border-radius: 7px;
+transform: rotate(30deg);
+
+
+/* Rectangle 1 */
+
+position: absolute;
+width: 563px;
+height: 380px;
+left: -120px;
+top: -107px;
+
+background: #2F80ED;
+border-radius: 7px;
+
+
+/* Rectangle 3 */
+
+position: absolute;
+width: 563px;
+height: 380px;
+left: 457.54px;
+top: 1012.48px;
+
+background: #2F80ED;
+border-radius: 7px;
+transform: rotate(-175.88deg);
+
+
+/* register */
+
+position: absolute;
+width: 360px;
+height: 484px;
+left: 21px;
+top: 332px;
+
+
+
+/* Rectangle 4 */
+
+position: absolute;
+width: 144px;
+height: 60px;
+left: 237px;
+top: 736px;
+
+border: 1px solid #FFFFFF;
+box-sizing: border-box;
+filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+border-radius: 7px;
+
+
+/* Register */
+
+position: absolute;
+width: 142px;
+height: 40px;
+left: 239px;
+top: 746px;
+
+font-family: Nunito;
+font-style: normal;
+font-weight: normal;
+font-size: 24px;
+line-height: 33px;
+display: flex;
+align-items: center;
+text-align: center;
+letter-spacing: -0.015em;
+
+color: #FFFFFF;
+
+
+
+/* Register */
+
+position: absolute;
+width: 338px;
+height: 67px;
+left: 21px;
+top: 332px;
+
+font-family: Nunito;
+font-style: normal;
+font-weight: bold;
+font-size: 36px;
+line-height: 49px;
+
+color: #2F80ED;
+
+
+
+/* Already Member? Login */
+
+position: absolute;
+width: 186px;
+height: 34px;
+left: 25px;
+top: 782px;
+
+font-family: Nunito;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 22px;
+
+color: #FFFFFF;
+
+text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+
+/* Email */
+
+position: absolute;
+width: 338px;
+height: 20px;
+left: 21px;
+top: 481px;
+
+font-family: Nunito;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 19px;
+
+color: #2F80ED;
+
+
+
+/* Full Name */
+
+position: absolute;
+width: 338px;
+height: 20px;
+left: 21px;
+top: 405px;
+
+font-family: Nunito;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 19px;
+
+color: #2F80ED;
+
+
+
+/* Password */
+
+position: absolute;
+width: 338px;
+height: 20px;
+left: 21px;
+top: 562px;
+
+font-family: Nunito;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 19px;
+
+color: #2F80ED;
+
+
+
+/* Rectangle 1 */
+
+position: absolute;
+width: 309px;
+height: 40px;
+left: 21px;
+top: 503px;
+
+border: 1px solid #2F80ED;
+border-radius: 10px;
+
+
+/* Rectangle 5 */
+
+position: absolute;
+width: 309px;
+height: 40px;
+left: 21px;
+top: 427px;
+
+border: 1px solid #2F80ED;
+border-radius: 10px;
+
+
+/* Rectangle 2 */
+
+position: absolute;
+width: 309px;
+height: 40px;
+left: 21px;
+top: 584px;
+
+border: 1px solid #2F80ED;
+border-radius: 10px;
+
+
+/* Auth */
+
+position: absolute;
+width: 167px;
+height: 45px;
+left: 25px;
+top: 723px;
+
+
+
+/* google logo */
+
+position: absolute;
+width: 45px;
+height: 45px;
+left: 25px;
+top: 723px;
+
+
+
+/* Rectangle 6 */
+
+position: absolute;
+width: 45px;
+height: 45px;
+left: 25px;
+top: 723px;
+
+background: #FFFFFF;
+box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.15);
+border-radius: 5px;
+
+
+/* flat-color-icons:google */
+
+position: absolute;
+width: 27px;
+height: 27px;
+left: 34px;
+top: 732px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 8.33%;
+right: 8.33%;
+top: 8.33%;
+bottom: 8.33%;
+
+background: #FFC107;
+
+
+/* Vector */
+
+position: absolute;
+left: 13.14%;
+right: 21.63%;
+top: 8.33%;
+bottom: 59.35%;
+
+background: #FF3D00;
+
+
+/* Vector */
+
+position: absolute;
+left: 12.91%;
+right: 22.06%;
+top: 58.45%;
+bottom: 8.33%;
+
+background: #4CAF50;
+
+
+/* Vector */
+
+position: absolute;
+left: 50%;
+right: 8.33%;
+top: 41.67%;
+bottom: 19.11%;
+
+background: #1976D2;
+
+
+/* apple logo */
+
+position: absolute;
+width: 45px;
+height: 45px;
+left: 147px;
+top: 723px;
+
+
+
+/* Rectangle 7 */
+
+position: absolute;
+width: 45px;
+height: 45px;
+left: 147px;
+top: 723px;
+
+background: #FFFFFF;
+box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.15);
+border-radius: 5px;
+
+
+/* ant-design:apple-filled */
+
+position: absolute;
+width: 27px;
+height: 27px;
+left: 156px;
+top: 732px;
+
+
+
+/* Vector */
+
+position: absolute;
+left: 15.92%;
+right: 15.82%;
+top: 9.38%;
+bottom: 9.37%;
+
+background: #000000;
+
+
+/* fb logo */
+
+position: absolute;
+width: 45px;
+height: 45px;
+left: 86px;
+top: 723px;
+
+
+
+/* Rectangle 5 */
+
+position: absolute;
+width: 45px;
+height: 45px;
+left: 86px;
+top: 723px;
+
+background: #FFFFFF;
+box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.15);
+border-radius: 5px;
+
+
+/* logos:facebook */
+
+position: absolute;
+width: 27px;
+height: 27px;
+left: 95px;
+top: 732px;
+
+background: #FFFFFF;
+
+
+/* Vector */
+
+position: absolute;
+left: 0%;
+right: 0%;
+top: 0%;
+bottom: 0%;
+
+background: #395185;
+
+
+/* Vector */
+
+position: absolute;
+left: 40.38%;
+right: 15.53%;
+top: 15.1%;
+bottom: 0%;
+
+background: #FFFFFF;

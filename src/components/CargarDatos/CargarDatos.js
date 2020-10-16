@@ -5,7 +5,7 @@ const CargarDatos = (props) => {
         <Fragment>
             <div className="loader"></div>
 
-            {/* <p style={styling}> */}
+            {/* <p style={styling}> }
             {props.loadingMsg}
             {/* </p> */}
         </Fragment >

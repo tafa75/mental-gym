@@ -22,64 +22,64 @@ const Main = props => {
     
 
     
-        return (
+        // return (
         
-              <div className="mainJuego">
+        //       <div className="mainJuego">
 
-                      <di className mainRight>
+        //               <di className mainRight>
                         
-                      </di>
-                      <div className="mainLeft">
+        //               </di>
+        //               <div className="mainLeft">
 
-                      </div>
+        //               </div>
 
-              </div>)
+        //       </div>)
     
-    // useEffect(() => {
+    useEffect(() => {
 
-    //     let listener = firebase.auth.onAuthStateChanged(user => {
-    //         user ? setUserSession(user) : props.history.push('/');
-    //     })
+        let listener = firebase.auth.onAuthStateChanged(user => {
+            user ? setUserSession(user) : props.history.push('/Juego');
+        })
 
-    //     if (!!userSession) {
-    //         firebase.user(userSession.uid)
-    //             .get()
-    //             .then(doc => {
-    //                 if (doc && doc.exists) {
-    //                     const myData = doc.data();
-    //                     setUserData(myData)
-    //                 }
-    //             })
-    //             .catch(error => {
-    //                 console.log(error);
-    //             })
-    //     }
+        if (!!userSession) {
+            firebase.user(userSession.uid)
+                .get()
+                .then(doc => {
+                    if (doc && doc.exists) {
+                        const myData = doc.data();
+                        setUserData(myData)
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }
 
-    //     return () => {
-    //         listener()
-    //     };
-    // }, [userSession, firebase, props.history])
+        return () => {
+            listener()
+        };
+    }, [userSession, firebase, props.history])
 
-    //     return userSession !== null  ?(
-    //         <CargarDatos
-    //             loadingMsg={"Tienes que loggearte  ..."}
+        return userSession !== null  ?(
+            <CargarDatos
+                loadingMsg={"  ..."}
 
-    //         />
-    //     ) :
-    //      (
+            />
+        ) :
+         (
 
-    //             <div className="quiz-bg">
-    //                 <div className="container">
-    //                     <h1>Hola</h1>
+                <div className="quiz-bg">
+                    <div className="container">
+                        <h1>Hola</h1>
 
-    //                      <Logout />,
-    //                     <Juego userData={userData} /> 
-    //                     <Refranes userData={userData} />
-    //                 </div>
-    //             </div>
+                         <Logout />,
+                        <Juego userData={userData} /> 
+                        <Refranes userData={userData} />
+                    </div>
+                </div>
 
-    //         )
-    // }
-}
+            )
+    }
+
 
 export default Main
