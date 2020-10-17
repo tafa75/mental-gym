@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Refranes from '../Juego/Refranes';
 import Home from '../Home/Home';
-import CargarDatos from '../CargarDatos/CargarDatos';
+import CargarDatos from '../CargarDatos/SaveScoreForm';
 
 
-export default function Game({ history }) {
+export default function Main ({ history }) {
     const [questions, setQuestions] = useState([]);
     const [currentQuestion, setCurrentQuestion] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -12,11 +12,11 @@ export default function Game({ history }) {
     const [questionNumber, setQuestionNumber] = useState(0);
     const [done, setDone] = useState(false);
 
-    useEffect(() => {
-        CargarDatos()
-            .then(setQuestions)
-            .catch(console.error);
-    }, []);
+    // useEffect(() => {
+    //     CargarDatos()
+    //         .then(setQuestions)
+    //         .catch(console.error);
+    // }, []);
 
     const scoreSaved = () => {
         history.push('/');
@@ -53,11 +53,11 @@ export default function Game({ history }) {
         ]
     );
 
-    useEffect(() => {
-        if (!currentQuestion && questions.length) {
-            changeQuestion();
-        }
-    }, [currentQuestion, questions, changeQuestion]);
+    // useEffect(() => {
+    //     if (!currentQuestion && questions.length) {
+    //         changeQuestion();
+    //     }
+    // }, [currentQuestion, questions, changeQuestion]);
 
     return (
         <>
@@ -65,7 +65,7 @@ export default function Game({ history }) {
 
             {!loading && !done && currentQuestion && (
                 <div>
-                    <Home score={score} questionNumber={questionNumber} />
+                    <Main score={score} questionNumber={questionNumber} />
                     <Refranes
                         question={currentQuestion}
                         changeQuestion={changeQuestion}

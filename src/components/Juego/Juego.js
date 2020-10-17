@@ -1,159 +1,88 @@
-import React, { Component, Fragment } from 'react'
-import Refranes from '../Juego/Refranes'
-import FinDelJuego from '../FindelJuego/FindelJuego'
-import '../Juego/Juego.css';
+import React, { useState, useEffect, useCallback } from 'react';
+import Question from '../Juego/question';
+import { loadQuestions } from '../helper/QuestionHelper';
+import Main from '../Main/Main';
+import SaveScoreForm from '../CargarDatos/SaveScoreForm';
 
-const initialState = {
-    maxQuestions: 10,
-    storedQuestions: [],
-    question: null,
-    options: [],
-    idQuestion: 0,
-    btnDisabled: true,
-    userAnswer: null,
-    score: 0,
-    showWelcomeMsg: false,
-    quizEnd: false,
-    percent: null
-}
+export default function Juego({ history }) {
+    const [questions, setQuestions] = useState([]);
+    const [currentQuestion, setCurrentQuestion] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [score, setScore] = useState(0);
+    const [questionNumber, setQuestionNumber] = useState(0);
+    const [done, setDone] = useState(false);
 
-class Juego extends Component {
+    useEffect(() => {
+        loadQuestions()
+            .then(setQuestions)
+            .catch(console.error);
+    }, []);
 
-    constructor(props) {
-        super(props)
-        this.state = initialState;
-        this.storedDataRef = React.createRef();
-    }
+    fetch(
+        'https://mental-gym.firebaseio.com/'
+    )
+    const scoreSaved = () => {
+        history.push('/');
+    };
 
-    loadQuestions = quizz => {
-        const fetchedArrayQuiz = Refranes[0].quizz[quizz];
-        if (fetchedArrayQuiz.length >= this.state.maxQuestions) {
+    const changeQuestion = useCallback(
+        (bonus = 0) => {
+            if (questions.length === 0) {
+                setDone(true);
+                return setScore(score + bonus);
+            }
 
-            this.storedDataRef.current = fetchedArrayQuiz;
+            const randomQuestionIndex = Math.floor(
+                Math.random() * questions.length
+            );
+            const currentQuestion = questions[randomQuestionIndex];
+            const remainingQuestions = [...questions];
+            remainingQuestions.splice(randomQuestionIndex, 1);
 
-            const newArray = fetchedArrayQuiz.map(({ answer, ...keepRest }) => keepRest);
-
-            this.setState({ storedQuestions: newArray })
-
-        }
-    }
-
-    showToastMsg = pseudo => {
-        if (!this.state.showWelcomeMsg) {
-
-            this.setState({ showWelcomeMsg: true })
-        }
-    }
-    nextQuestion = () => {
-        if (this.state.idQuestion === this.state.maxQuestions - 1) {
-
-            this.setState({ quizEnd: true })
-
-        } else {
-
-            this.setState(prevState => ({ idQuestion: prevState.idQuestion + 1 }))
-        }
-
-        const goodAnswer = this.storedDataRef.current[this.state.idQuestion].answer;
-        if (this.state.userAnswer === goodAnswer) {
-
-            this.setState(prevState => ({ score: prevState.score + 1 }))
-        }
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        const {
-            maxQuestions,
-            storedQuestions,
-            idQuestion,
-            finDelJuego,
-            score
-        } = this.state;
-
-        if ((storedQuestions !== prevState.storedQuestions) && storedQuestions.length) {
-
-            this.setState({
-                question: storedQuestions[idQuestion].question,
-                options: storedQuestions[idQuestion].options
-            })
-
-        }
-
-        if ((idQuestion !== prevState.idQuestion) && storedQuestions.length) {
-            this.setState({
-                question: storedQuestions[idQuestion].question,
-                options: storedQuestions[idQuestion].options,
-                userAnswer: null,
-                btnDisabled: true
-            })
-        }
-
-        if (finDelJuego !== prevState.quizEnd) {
-            const gradepercent = this.getPercentage(maxQuestions, score);
-            this.gameOver(gradepercent);
-        }
-
-        if (this.props.userData.pseudo !== prevProps.userData.pseudo) {
-            this.showToastMsg(this.props.userData.pseudo)
-        }
-
-    }
-
-    submitAnswer = selectedAnswer => {
-        this.setState({
-            userAnswer: selectedAnswer,
-            btnDisabled: false
-        })
-    }
-
-
-    render() {
-        const {
-            maxQuestions,
-            question,
-            options,
-            idQuestion,
-            btnDisabled,
-            userAnswer,
+            setQuestions(remainingQuestions);
+            setCurrentQuestion(currentQuestion);
+            setLoading(false);
+            setScore(score + bonus);
+            setQuestionNumber(questionNumber + 1);
+        },
+        [
             score,
-        } = this.state;
+            questionNumber,
+            questions,
+            setQuestions,
+            setLoading,
+            setCurrentQuestion,
+            setQuestionNumber
+        ]
+        
+    );
 
-        const displayOptions = options.map((option, index) => {
-            return (
-                <p key={index}
-                    className={`answerOptions ${userAnswer === option ? "selected" : null}`}
-                    onClick={() => this.submitAnswer(option)}
-                >
-                </p>
-            )
-        })
+    useEffect(() => {
+        if (!currentQuestion && questions.length) {
+            changeQuestion();
+        }
+    }, [currentQuestion, questions, changeQuestion]);
 
-        return FinDelJuego ? (
-            <FinDelJuego
-                ref={this.storedDataRef}
-                score={score}
-                maxQuestions={maxQuestions}
-            />
-        )
-            :
-            (
-                <Fragment>
+    return (
+        <>
+            {loading && !done && <div id="loader" />}
 
-                    
+            {!loading && !done && currentQuestion && (
+                <div>
+                    <Main score={score} questionNumber={questionNumber} />
+                    <h2 id="question">What is the answer to this questions?</h2>
+            <div class="choice-container">
+              <p class="choice-prefix">A</p>
+              <p class="choice-text" data-number="1">Choice 1</p>
+            </div>
+                    <Question
+                        question={currentQuestion}
+                        changeQuestion={changeQuestion}
+                    />
+                </div>
+            )}
 
-                    { displayOptions}
-
-                    <button
-                        disabled={btnDisabled}
-                        className="btnSubmit"
-                        onClick={this.nextQuestion}
-                    >
-                        {idQuestion < maxQuestions - 1 ? "siguiente" : "Terminar"}
-                    </button>
-                </Fragment>
-            )
-
-    }
+            {done && <SaveScoreForm score={score} scoreSaved={scoreSaved} />}
+        </>
+    );
 }
-
-export default Juego

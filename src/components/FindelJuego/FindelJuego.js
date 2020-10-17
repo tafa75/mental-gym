@@ -1,33 +1,36 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import axios from 'axios'
 import CargarDatos from '../CargarDatos/CargarDatos';
+import Modal from '../Modal/Modal'
 
-const QuizOver = React.forwardRef((props, ref) => {
+
+
+
+const FinDelJuego = React.forwardRef((props, ref) => {
 
     const {
-        levelNames, 
         score, 
         maxQuestions, 
         percent,
         loadLevelQuestions
     } = props;
 
-    const API_PUBLIC_KEY = ''
-    const hash = '';
+    const API_PUBLIC_KEY = 'AIzaSyB7-nruCZx_5pOTHUsGljptrw_YixUa42M'
+ 
 
     const [asked, setAsked] = useState([]);
     const [openModal, setOpenModal] = useState(false);
     const [characterInfos, setCharacterInfos] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        setAsked(ref.current)
+    // useEffect(() => {
+    //     setAsked(ref.current)
 
-        if ( localStorage.getItem('')) {
-            const date = localStorage.getItem('');
-            checkDataAge(date);
-        }
-    }, [ref])
+    //     if ( localStorage.getItem('')) {
+    //         const date = localStorage.getItem('');
+    //         checkDataAge(date);
+    //     }
+    // }, [ref])
 
     const checkDataAge = date => {
 
@@ -53,16 +56,16 @@ const QuizOver = React.forwardRef((props, ref) => {
         } else {
 
             axios
-            .get(`https://tripu.herokuapp.com/l:6060/datos?cantidad=(cantidad de datos a devolver, máximo 585)`)
+            .get(`https://mental-gym.firebaseio.com/`)
             .then( response => {
                 
                 setCharacterInfos(response.data);
                 setLoading(false);
 
-                // localStorage.setItem(id, JSON.stringify(response.data));
-                // if ( !localStorage.getItem('marvelStorageDate') ) {
-                //     localStorage.setItem('marvelStorageDate', Date.now());
-                // }
+                localStorage.setItem(id, JSON.stringify(response.data));
+                if ( !localStorage.getItem('marvelStorageDate') ) {
+                    localStorage.setItem('marvelStorageDate', Date.now());
+                }
                 
             })
             .catch( err => console.log(err) )
@@ -112,8 +115,8 @@ const QuizOver = React.forwardRef((props, ref) => {
         }
         </div>
         <div className="percentage">
-            <div className="progressPercent">Réussite: {percent} %</div>
-            <div className="progressPercent">Note: {score}/{maxQuestions}</div>
+            <div className="progressPercent">felicidades has conseguido: {percent} %</div>
+            <div className="progressPercent">tu nota es: {score}/{maxQuestions}</div>
         </div>
         </Fragment>
     )
@@ -121,12 +124,12 @@ const QuizOver = React.forwardRef((props, ref) => {
     (
         <Fragment>
             <div className="stepsBtnContainer">
-                <p className="failureMsg">Vous avez échoué !</p>
+                <p className="failureMsg">has fallados!</p>
             </div>
 
             <div className="percentage">
-                <div className="progressPercent">Réussite: {percent} %</div>
-                <div className="progressPercent">Note: {score}/{maxQuestions}</div>
+                <div className="progressPercent">felicidades has conseguido: {percent} %</div>
+                <div className="progressPercent">tu nota es : {score}/{maxQuestions}</div>
             </div>
         </Fragment>
     )
@@ -200,7 +203,7 @@ const QuizOver = React.forwardRef((props, ref) => {
                </div>
             </div>
             <div className="modalFooter">
-                <button className="modalBtn" onClick={hideModal}>Fermer</button>
+                <button className="modalBtn" onClick={hideModal}>cerrar</button>
             </div>
         </Fragment>
     )
@@ -234,4 +237,4 @@ const QuizOver = React.forwardRef((props, ref) => {
     )
 })
 
-export default React.memo(QuizOver)
+export default React.memo(FinDelJuego)

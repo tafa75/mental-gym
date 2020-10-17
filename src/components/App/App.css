@@ -1,4 +1,4 @@
-body{
+/* body{
   text-align: center;
   justify-content: center;
   text-decoration: none;
@@ -123,13 +123,13 @@ h1 a:hover {
   
   @media screen and (max-width: 980px) {
     /* Change Modal elements */
-    .modalBody {
+    /* .modalBody {
       flex-direction: column;
       justify-content: flex-start;
       padding: 30px;
-    }
+    } */
   
-    .modalContainer {
+    /* .modalContainer {
       flex: 0 1 90%;
       box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
       display: flex;
@@ -138,12 +138,11 @@ h1 a:hover {
   }
   
   @media screen and (max-width: 1110px) {
-     /* make container full width */
+   
      .container {
       flex: 0 1 100%;
     }
   
-    /* hide all images on forms */
     .formBoxLeftSignup,
     .formBoxLeftLogin,
     .formBoxLeftForget {
@@ -154,4 +153,4 @@ h1 a:hover {
       flex: 0 1 100%;
     }
   
-  }
+  } */ 

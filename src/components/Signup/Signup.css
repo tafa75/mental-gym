@@ -1,5 +1,4 @@
-signUpLoginBox {
-  background-image: url();
+ signUpLoginBox {
   background-repeat: repeat;
   -webkit-box-shadow: inset 0px 143px 108px -18px rgba(0, 0, 0, 0.39);
   -moz-box-shadow: inset 0px 143px 108px -18px rgba(0, 0, 0, 0.39);
@@ -14,11 +13,9 @@ signUpLoginBox {
 }
 
 .formBoxLeftSignup {
-  min-height: 500px;
   background-repeat: no-repeat;
   background-position: center center;
   flex: 0 1 50%;
-  width: 40px;
 }
 image{
   height: 40vmin;
@@ -27,7 +24,6 @@ pointer-events: none;
 }
 
 .formBoxLeftLogin {
-  height: 50px;
   height: 40vmin;
   pointer-events: none;
   image-rendering: 30px;
@@ -37,8 +33,6 @@ pointer-events: none;
 }
 
 .formBoxLeftForget {
-  min-height: 500px;
-  height: 40vmin;
   pointer-events: none;
   background-repeat: no-repeat;
   background-position: center center;
@@ -54,8 +48,6 @@ pointer-events: none;
   color: var(--red-color);
   text-align: center;
   border: 1px solid ;
-  padding: 10px;
-  margin: 15px 0;
 }
 
 .formContent {
@@ -65,7 +57,6 @@ pointer-events: none;
 }
 
 .formContent h2 {
-  margin: 0 0 40px 0;
   padding: 0;
   color: var(--white-color);
   text-transform: uppercase;
@@ -77,8 +68,6 @@ pointer-events: none;
 }
 
 .formContent .inputBox input {
-  width: 100%;
-  padding: 10px 0;
   font-size: 17px;
   color: var(--red-color);
   text-transform: uppercase;
@@ -88,7 +77,7 @@ pointer-events: none;
   background: white;
   border-bottom: 1px solid ;
   outline: none;
-  border-radius: 10px;
+  border-radius: 15px;
 }
 
 .formContent .inputBox label {
@@ -96,7 +85,6 @@ pointer-events: none;
   position: absolute;
   top: 0;
   left: 0;
-  padding: 10px 0;
   font-size: 17px;
   pointer-events: none;
   -webkit-transition: 0.2s ease-in;
@@ -114,12 +102,10 @@ pointer-events: none;
   font-style: italic;
 }
 
-/* Form buttons */
+Form buttons */
 .formContent button {
   margin-left: 0;
   display: block;
-  margin: 0 auto 20px;
-  min-width: 150px;
   background-color: transparent;
   color: var(--white-color);
   padding: 7px;
@@ -145,7 +131,7 @@ button[disabled]:hover {
 }
 
 .linkContainer {
-  height: 50px;
+ height: 50px;
   margin-top: 35px;
   padding-top: 15px;
   border-top: 1px dashed var(--light-grey-color);
@@ -160,4 +146,4 @@ button[disabled]:hover {
 
 .simpleLink:hover {
   color: var(--red-color);
-}
+} 

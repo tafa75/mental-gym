@@ -1,5 +1,4 @@
 import Firebase, { auth } from 'firebase';
-import FirebaseContext from './FirebaseContext'
 
 import React, { Component, createContext } from "react";
 
@@ -28,6 +27,7 @@ class UserProvider extends Component {
 }
 
 function signInWithGoogle() {
+    
     Firebase.auth().signInWithPopup(googleProvider).then(function (result) {
         // This gives you a Google Access Token. You can use it to access the Google API.
         var token = result.credential.accessToken;
@@ -50,3 +50,7 @@ function signInWithGoogle() {
 
 // export default signInWithGoogle
 export default { UserProvider, signInWithGoogle };
+
+
+
+

@@ -1,3 +1,18 @@
+const firebaseConfig = {
+  apiKey: "AIzaSyB7-nruCZx_5pOTHUsGljptrw_YixUa42M",
+  authDomain: "mental-gym.firebaseapp.com",
+  databaseURL: "https://mental-gym.firebaseio.com",
+  projectId: "mental-gym",
+  storageBucket: "mental-gym.appspot.com",
+  messagingSenderId: "946422214142",
+  appId: "1:946422214142:web:2cb844f8bff02f667d24af",
+  measurementId: "G-DG02NV1PED"
+};
+export default firebaseConfig
+
+
+
+
 // import app from 'firebase/app';
 // import 'firebase/auth';
 // import 'firebase/firestore'
@@ -14,11 +29,6 @@
 
 //     ;
 // }
-// var firebaseui = require('firebaseui')
-// var firebase = require('firebase');
-// const firebaseApp = new Firebase
-// // var ui = new firebaseui.auth.AuthUI(firebase.auth());
-
 
 // //  ui.start('#firebaseui-auth-container', {
 // //     signInOptions: [
@@ -29,18 +39,6 @@
 // //      ],
 // //     // Other config options...
 // //   });
-// export default { firebaseApp, firebaseConfig }
-// //export {FirebaaseContext};
 
 
-const firebaseConfig = {
-  apiKey: "AIzaSyB7-nruCZx_5pOTHUsGljptrw_YixUa42M",
-  authDomain: "mental-gym.firebaseapp.com",
-  databaseURL: "https://mental-gym.firebaseio.com",
-  projectId: "mental-gym",
-  storageBucket: "mental-gym.appspot.com",
-  messagingSenderId: "946422214142",
-  appId: "1:946422214142:web:2cb844f8bff02f667d24af",
-  measurementId: "G-DG02NV1PED"
-};
-export default firebaseConfig 
+
