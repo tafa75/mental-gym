@@ -41,7 +41,9 @@ const Login = (props) => {
         //         setPassword('');
         //     })
 
-        firebase.auth().signInWithEmailAndPassword(email, password).then(() => alert("te has conectado")).then(() => window.location.replace('/Main')).catch(function (error) {
+        firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(() => window.location.replace('/Main'))
+        .catch(function (error) {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;

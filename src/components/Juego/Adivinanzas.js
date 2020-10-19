@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import Question from '../Juego/question';
+import Question from '../Juego/Question';
 import { loadQuestions } from '../helper/QuestionHelper';
 import Main from '../Main/Main';
 import SaveScoreForm from '../CargarDatos/SaveScoreForm';
 
-export default function Juego({ history }) {
+export default function Adivinanza({ history }) {
     const [questions, setQuestions] = useState([]);
     const [currentQuestion, setCurrentQuestion] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -12,22 +12,41 @@ export default function Juego({ history }) {
     const [questionNumber, setQuestionNumber] = useState(0);
     const [done, setDone] = useState(false);
 
-    useEffect(() => {
-        loadQuestions()
-            .then(setQuestions)
-            .catch(console.error);
-    }, []);
+     // useEffect(() => {
+    //     loadQuestions()
+    //         .then(setQuestions)
+    //         .catch(console.error);
+    // }, []);
 
-    fetch(
-        'https://mental-gym.firebaseio.com/'
-    )
     const scoreSaved = () => {
         history.push('/');
     };
 
+    const questionLoader = () => {
+        loadQuestions()
+            .then((questions) => setQuestions)
+            .catch(console.error);
+
+        return (
+            <div>
+
+
+                        Question : "A barriga llena..."
+                        Answer : " corazón contento."
+                        Incorrect1 : " pocas palabras bastan."
+                        Incorrect2 : " no hay pan duro."
+                        Incorrect3 : " mangas verdes!"
+
+
+
+            </div>
+            
+            );
+    }
+
     const changeQuestion = useCallback(
         (bonus = 0) => {
-            if (questions.length === 0) {
+            if (Question.length === 0) {
                 setDone(true);
                 return setScore(score + bonus);
             }
@@ -54,34 +73,32 @@ export default function Juego({ history }) {
             setCurrentQuestion,
             setQuestionNumber
         ]
-        
     );
 
-    useEffect(() => {
-        if (!currentQuestion && questions.length) {
-            changeQuestion();
-        }
-    }, [currentQuestion, questions, changeQuestion]);
+    // useEffect(() => {
+    //     if (!currentQuestion && Question.length) {
+    //         changeQuestion();
+    //        //console.log("aqui estan las preguntas")
+    //     }
+    //     else{
+    //         console.log("no se han cargado las preguntas");
+    //     }
+    // }, [currentQuestion, questions, changeQuestion]);
 
     return (
         <>
+            {loading && questionLoader()}
             {loading && !done && <div id="loader" />}
 
             {!loading && !done && currentQuestion && (
                 <div>
                     <Main score={score} questionNumber={questionNumber} />
-                    <h2 id="question">What is the answer to this questions?</h2>
-            <div class="choice-container">
-              <p class="choice-prefix">A</p>
-              <p class="choice-text" data-number="1">Choice 1</p>
-            </div>
                     <Question
                         question={currentQuestion}
                         changeQuestion={changeQuestion}
                     />
                 </div>
             )}
-
             {done && <SaveScoreForm score={score} scoreSaved={scoreSaved} />}
         </>
     );

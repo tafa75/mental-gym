@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Juego from "../Juego/Juego"
+import Adivinanzas from "../Juego/Adivinanzas"
 import Refranes from '../Juego/Refranes'
 import Header from '../Header/Header'
+import Nav from '../Nav/Nav'
 import Main from '../Main/Main'
 import Login from '../Login/Login'
 import Signup from '../Signup/Signup'
@@ -21,9 +22,10 @@ function App() {
         <main>
           <Switch>
             <Route exact path="/" component={Login} />
+            <Route path="/Nav" component={Nav}/>
             <Route path="/Main" component={Main} />
             <Route path="/signup" component={Signup} />
-            <Route path="/Juego" component={Juego} />
+            <Route path="/Adivinanzas" component={Adivinanzas} />
             <Route path="/Refranes" component={Refranes} />
           </Switch>
         </main>

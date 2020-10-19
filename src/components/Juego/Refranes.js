@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import Refranes from '../Juego/Refranes';
-import Home from '../Home/Home';
-import CargarDatos from '../CargarDatos/SaveScoreForm';
+import Question from '../Juego/Question';
+import { loadQuestions } from '../helper/QuestionHelper';
+import Main from '../Main/Main';
+import SaveScoreForm from '../CargarDatos/SaveScoreForm';
 
-
-export default function Main ({ history }) {
+export default function Refranes({ history }) {
     const [questions, setQuestions] = useState([]);
     const [currentQuestion, setCurrentQuestion] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -13,7 +13,7 @@ export default function Main ({ history }) {
     const [done, setDone] = useState(false);
 
     // useEffect(() => {
-    //     CargarDatos()
+    //     loadQuestions()
     //         .then(setQuestions)
     //         .catch(console.error);
     // }, []);
@@ -22,9 +22,26 @@ export default function Main ({ history }) {
         history.push('/');
     };
 
+    const questionLoader = () => {
+        loadQuestions()
+            .then((questions) => setQuestions)
+            .catch(console.error);
+
+        return (
+            <div>
+                        Question : "A barriga llena..."
+                        Answer : " corazón contento."
+                        Incorrect1 : " pocas palabras bastan."
+                        Incorrect2 : " no hay pan duro."
+                        Incorrect3 : " mangas verdes!"
+            </div>
+
+            );
+    }
+
     const changeQuestion = useCallback(
         (bonus = 0) => {
-            if (questions.length === 0) {
+            if (Question.length === 0) {
                 setDone(true);
                 return setScore(score + bonus);
             }
@@ -54,25 +71,30 @@ export default function Main ({ history }) {
     );
 
     // useEffect(() => {
-    //     if (!currentQuestion && questions.length) {
+    //     if (!currentQuestion && Question.length) {
     //         changeQuestion();
+    //        //console.log("aqui estan las preguntas")
+    //     }
+    //     else{
+    //         console.log("no se han cargado las preguntas");
     //     }
     // }, [currentQuestion, questions, changeQuestion]);
 
     return (
         <>
+            {loading && questionLoader()}
             {loading && !done && <div id="loader" />}
 
             {!loading && !done && currentQuestion && (
                 <div>
                     <Main score={score} questionNumber={questionNumber} />
-                    <Refranes
+                    <Question
                         question={currentQuestion}
                         changeQuestion={changeQuestion}
                     />
                 </div>
             )}
-
+            {done && <SaveScoreForm score={score} scoreSaved={scoreSaved} />}
         </>
     );
 }

@@ -1,2 +1,45 @@
-// 'https://mental-gym.firebaseio.com/'
-// const Question={"237": {"Question": "El sabio siempre quiere aprender...", "Answer": " el ignorante siempre quiere ense\u00f1ar.", "Incorrect1": " oro.", "Incorrect2": " lo dir\u00e1.", "Incorrect3": " no se recupera."}, "548": {"Question": "Se dice el pecado...", "Answer": " pero no el pecador.", "Incorrect1": " pierdes las amistades.", "Incorrect2": " pueden ser amigos perro y gato.", "Incorrect3": " \u00a1cu\u00e1ntos ti\u00f1osos habr\u00eda!."}, "234": {"Question": "El que venga detr\u00e1s...", "Answer": " que arree.", "Incorrect1": " sirve a muchos se\u00f1ores.", "Incorrect2": " lugar.", "Incorrect3": " el ignorante siempre quiere ense\u00f1ar."}, "134": {"Question": "Del agua mansa l\u00edbreme Dios...", "Answer": " que de la brava me librar\u00e9 yo.", "Incorrect1": " un paso.", "Incorrect2": " todos hacen le\u00f1a.", "Incorrect3": " un buen trecho."}, "391": {"Question": "M\u00e1s vale llegar a tiempo...", "Answer": " que rondar un a\u00f1o.", "Incorrect1": " que lo bueno por conocer.", "Incorrect2": " que fuerza.", "Incorrect3": " que ciento volando."}, "171": {"Question": "El amor es...", "Answer": " ciego.", "Incorrect1": " m\u00e1s quiere.", "Incorrect2": " volando.", "Incorrect3": " por lo sano."}, "320": {"Question": "La perseverancia...", "Answer": " todo lo alcanza.", "Incorrect1": " la sangre altera.", "Incorrect2": " va por dentro.", "Incorrect3": " la ficci\u00f3n."}, "562": {"Question": "Tirar la piedra y...", "Answer": " esconder la mano.", "Incorrect1": " la hermosura.", "Incorrect2": " menos la muerte.", "Incorrect3": " apaleado."}, "180": {"Question": "El dinero hace...", "Answer": " caballero.", "Incorrect1": " los medios.", "Incorrect2": " es el m\u00e1s apetecido.", "Incorrect3": " del agua fr\u00eda huye."}, "378": {"Question": "Los trapos sucios...", "Answer": " se lavan en casa.", "Incorrect1": " consuelo de tontos.", "Incorrect2": " otro d\u00eda.", "Incorrect3": " \u00bfqu\u00e9 esper\u00e1is?"}}
+import React, { useState } from 'react';
+
+export default function Question({ question, changeQuestion }) {
+    const [classToApply, setClassToApply] = useState('');
+    const [selectedAnswer, setSelectedAnswer] = useState(-1);
+    const [answering, setAnswering] = useState(false);
+
+    const checkAnswer = (selectedAnswer) => {
+        if (answering) return;
+
+        setAnswering(true);
+        setSelectedAnswer(selectedAnswer);
+
+        const classToApply =
+            selectedAnswer === question.answer ? 'correct' : 'incorrect';
+        setClassToApply(classToApply);
+        const bonus = selectedAnswer === question.answer ? 10 : 0;
+
+        setTimeout(() => {
+            setSelectedAnswer(-1);
+            setAnswering(false);
+            changeQuestion(bonus);
+        }, 1000);
+    };
+
+    return (
+        <div>
+            <h2 dangerouslySetInnerHTML={{ __html: question.question }}></h2>
+            {question.answerChoices.map((choice, index) => (
+                <div
+                    key={index}
+                    className={`choice-container ${selectedAnswer === index &&
+                        classToApply}`}
+                    onClick={() => checkAnswer(index)}
+                >
+                    <p className="choice-prefix">{index + 1}</p>
+                    <p
+                        className="choice-text"
+                        dangerouslySetInnerHTML={{ __html: choice }}
+                    ></p>
+                </div>
+            ))}
+        </div>
+    );
+}

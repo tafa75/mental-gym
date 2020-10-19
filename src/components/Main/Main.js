@@ -1,21 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Juego from '../Juego/Juego'
+import Adivinanzas from '../Juego/Adivinanzas'
 import Refranes from '../Juego/Refranes'
+
 export default function Home() {
+
+
     return (
         <>
+            <Link to="/Logout" className="btn">
+                Logout
+            </Link>
 
             <Link to="/Refranes" className="btn">
                 Refranes
             </Link>
-            <Link to="/Juego" className="btn">
-                Adivinanza
+            <Link to="/Adivinanzas" className="btn">
+                Adivinanzas
             </Link>
         </>
     );
-}
-    // useEffect(() => {
+ }
+
+// <button onClick={Refranes}>Refranes</button><hr></hr>
+
+// <button onClick={Juego}>Adivinanzas</button>
+//     // useEffect(() => {
 
     //     let listener = firebase.auth.onAuthStateChanged(user => {
     //         user ? setUserSession(user) : props.history.push('/');

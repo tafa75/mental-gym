@@ -3,7 +3,10 @@ header {
     justify-content: center;
   }
   
+  img{
+    Width:160px;
+  }
+  
   .banner-container {
-    padding: 20px 0;
     flex-basis: 80%;
   }

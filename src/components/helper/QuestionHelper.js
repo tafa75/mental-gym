@@ -1,10 +1,13 @@
+import React from 'react'
+
+import Adivinanzas from "../Juego/Adivinanzas";
+import Refranes from '../Juego/Refranes'
+
+
 export const loadQuestions = async (
-    amount = 10,
-    category = 9,
-    difficulty = 'easy',
-    type = 'multiple'
+
 ) => {
-    const url = `https://tripu.herokuapp.com/datos?cantidad=10`;
+    const url = `https://tripu.herokuapp.com/datos?juego=${Refranes},${Adivinanzas}/cantida=10`;
 
     try {
         const res = await fetch(url);
