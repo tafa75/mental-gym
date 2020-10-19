@@ -5,48 +5,33 @@ import Main from '../Main/Main';
 import SaveScoreForm from '../CargarDatos/SaveScoreForm';
 
 export default function Adivinanza({ history }) {
-    const [questions, setQuestions] = useState([]);
+
     const [currentQuestion, setCurrentQuestion] = useState(null);
     const [loading, setLoading] = useState(true);
     const [score, setScore] = useState(0);
     const [questionNumber, setQuestionNumber] = useState(0);
     const [done, setDone] = useState(false);
+    const [questions, setQuestions] = useState([{ question: "", answerChoices: ["", "", "", ""], answer: 0 }]);
 
-     // useEffect(() => {
-    //     loadQuestions()
-    //         .then(setQuestions)
-    //         .catch(console.error);
-    // }, []);
+
+    useEffect(() => {
+
+        loadQuestions('http://tripu.herokuapp.com/datos?juego=adivinanzas&cantidad=10')
+            .then((data) => {
+
+                setQuestions(questions => [...data])
+                return "hola"
+            })
+    }, []);
+
 
     const scoreSaved = () => {
         history.push('/');
     };
 
-    const questionLoader = () => {
-        loadQuestions()
-            .then((questions) => setQuestions)
-            .catch(console.error);
-
-        return (
-            <div>
-
-
-                        Question : "A barriga llena..."
-                        Answer : " corazón contento."
-                        Incorrect1 : " pocas palabras bastan."
-                        Incorrect2 : " no hay pan duro."
-                        Incorrect3 : " mangas verdes!"
-
-
-
-            </div>
-            
-            );
-    }
-
     const changeQuestion = useCallback(
         (bonus = 0) => {
-            if (Question.length === 0) {
+            if (questions.length === 0) {
                 setDone(true);
                 return setScore(score + bonus);
             }
@@ -75,19 +60,14 @@ export default function Adivinanza({ history }) {
         ]
     );
 
-    // useEffect(() => {
-    //     if (!currentQuestion && Question.length) {
-    //         changeQuestion();
-    //        //console.log("aqui estan las preguntas")
-    //     }
-    //     else{
-    //         console.log("no se han cargado las preguntas");
-    //     }
-    // }, [currentQuestion, questions, changeQuestion]);
+    useEffect(() => {
+        if (!currentQuestion && questions.length) {
+            changeQuestion();
+        }
+    }, [currentQuestion, questions, changeQuestion]);
 
     return (
         <>
-            {loading && questionLoader()}
             {loading && !done && <div id="loader" />}
 
             {!loading && !done && currentQuestion && (
@@ -99,6 +79,7 @@ export default function Adivinanza({ history }) {
                     />
                 </div>
             )}
+
             {done && <SaveScoreForm score={score} scoreSaved={scoreSaved} />}
         </>
     );

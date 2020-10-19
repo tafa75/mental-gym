@@ -4,25 +4,26 @@ import Adivinanzas from "../Juego/Adivinanzas";
 import Refranes from '../Juego/Refranes'
 
 
-export const loadQuestions = async (
-
-) => {
-    const url = `https://tripu.herokuapp.com/datos?juego=${Refranes},${Adivinanzas}/cantida=10`;
+export const loadQuestions = async (url) => {
+    //const url = `http://tripu.herokuapp.com/datos?juego=refranes&cantidad=10`;
 
     try {
+        console.log("cargando")
         const res = await fetch(url);
-        const { results } = await res.json();
+        const results = await res.json();
         return convertQuestionsFromAPI(results);
+
     } catch (err) {
         console.error(err);
+        return ["error", "tengo hambre"]
     }
 };
 
 const convertQuestionsFromAPI = (rawQuestions) => {
-    return rawQuestions.map((loadedQuestion) => {
+    return (Object.values(rawQuestions).map((loadedQuestion) => {
         const formattedQuestion = {
-            question: loadedQuestion.question,
-            answerChoices: [...loadedQuestion.incorrect_answers]
+            question: loadedQuestion.Question,
+            answerChoices: [loadedQuestion.Incorrect1, loadedQuestion.Incorrect2, loadedQuestion.Incorrect3]
         };
 
         formattedQuestion.answer = Math.floor(Math.random() * 4);
@@ -30,9 +31,9 @@ const convertQuestionsFromAPI = (rawQuestions) => {
         formattedQuestion.answerChoices.splice(
             formattedQuestion.answer,
             0,
-            loadedQuestion.correct_answer
+            loadedQuestion.Answer
         );
 
         return formattedQuestion;
-    });
+    }));
 };
