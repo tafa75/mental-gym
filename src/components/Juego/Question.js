@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import firebase from "firebase/app";
+import "firebase/firestore"
 
 export default function Question({ question, changeQuestion }) {
     const [classToApply, setClassToApply] = useState('');
@@ -12,7 +14,7 @@ export default function Question({ question, changeQuestion }) {
         setSelectedAnswer(selectedAnswer);
 
         const classToApply =
-            selectedAnswer === question.answer ? 'correct' : 'incorrect';
+            selectedAnswer === question.answer ? 'correct' : 'incorrect'; //CSS
         setClassToApply(classToApply);
         const bonus = selectedAnswer === question.answer ? 10 : 0;
 
@@ -21,6 +23,7 @@ export default function Question({ question, changeQuestion }) {
             setAnswering(false);
             changeQuestion(bonus);
         }, 1000);
+        
     };
 
     return (

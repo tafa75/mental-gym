@@ -1,15 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import FirebaseContext from '../Firebase/FirebaseContext';
-//import firebase from "firebase/app";
-import "firebase/auth";
-// import firebase from "firebase/app"
+import "firebase/auth"; import firebase from "firebase/app"
 import '../Signup/Signup.css';
 import "firebase/firestore"
 import { useFirebaseApp, useFirestoreCollection } from "reactfire"
 import { getMaxListeners } from 'process';
-
-
 
 ///////////////////////////////////////////
 const Signup = (props) => {
@@ -32,38 +27,9 @@ const Signup = (props) => {
         edad: '',
 
     }
-    const [pedro, setUserId] = useState("")
+    const [userId, setUserId] = useState("")
     const [loginData, setLoginData] = useState(data);
     const [error, setError] = useState('')
-
-    // const handleChange = e => {
-    //     setLoginData({ ...data, [e.target.id]: e.target.value });
-    //     console.log(loginData)
-    // }
-
-    // const handleSubmit = e => {
-    //     e.preventDefault();
-
-    //     const { email, password, user, sexo, edad } = loginData;
-    //     firebase.signupUser(email, password, sexo, edad)
-    //         .then(authUser => {
-    //             return firebase.user(authUser.user.uid).set({
-    //                 user,
-    //                 email
-    //             })
-    //         })
-    //         .then(() => {
-    //             setLoginData({ ...data });
-    //             props.history.push('/Main');
-    //         })
-    //         .catch(error => {
-    //             setError(error);
-    //             setLoginData({ ...data });
-    //         })
-    // }
-
-
-
 
     const handleChange = e => {
 
@@ -76,8 +42,6 @@ const Signup = (props) => {
 
         }
         console.log(userData)
-
-
 
         firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password)
             .then(() => console.log("hola"))
@@ -106,7 +70,6 @@ const Signup = (props) => {
             .then(data => {
                 console.log("User ID :- ", data.user.uid); // Lee el ID
                 setUserId(data.user.uid)
-                console.log(pedro)
 
 
 
@@ -124,34 +87,8 @@ const Signup = (props) => {
                 console.log("hola error")
             });
 
-
-        //e.preventDefault()
-        //firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password).then(() => window.location.replace("/Main"))
-
-        ////////////////////////////
-        // .then(res => { if (res.user) Auth.setLoggedIn(true) }).catch(e => { setErrors(e.message) })
-        /////////////////////////////
-        // firebase.signupUser(email, password, age, user, sex)
-        //     .then(authUser => {
-        //         return firebase.user(authUser.user.uid).set({
-        //             user,
-        //             email
-        //         })
-        //     })
-        //     .then(() => {
-        //         setLoginData({ ...data });
-        //         props.history.push('/Main');
-        //     })
-        //     .catch(error => {
-        //         setError(error);
-        //         setLoginData({ ...data });
-        //     })
-
     }
-    // const { user, email, password, confirmPassword, sexo, edad } = data;
 
-    // gestion erreurs
-    // const errorMsg = error !== '' && <span>{error.message}</span>;
 
     return (
         <div className="signUpLoginBox">
@@ -159,7 +96,7 @@ const Signup = (props) => {
             <div className="formBoxRight">
                 <div className="formContent">
 
-                    <h2>Inscription</h2>
+                    <h2>Inscripción</h2>
                     <form onSubmit={handleSubmit}>
 
                         <div className="inputBox">
@@ -176,7 +113,6 @@ const Signup = (props) => {
                             <input onChange={event => setPassword(event.target.value)} type="password" id="password" autoComplete="off" required />
                             <label htmlFor="password">contraseña</label>
                         </div>
-
                         <br></br> <div className="inputBox">
                             <input onChange={event => setConfirmPassword(event.target.value)} type="password" id="confirmPassword" autoComplete="off" required />
                             <label htmlFor="confirmPassword">Confirmar contraseña</label>
@@ -189,9 +125,17 @@ const Signup = (props) => {
                         <br></br> <div className="inputBox">
                             <input onChange={event => setAge(event.target.value)} type="number" id="edad" autoComplete="off" required />
                             <label htmlFor="edad">edad</label>
+
                         </div>
+                        <br></br> <div className="inputBox">
+                            <input onChange={event => setAge(event.target.value)} type="texty" id="aut" autoComplete="off" required />
+                            <label htmlFor="edad">Autonomía</label>
+                        </div>
+
                         <br></br>   <div>
-                            <input value="enviar" type="submit" id="submit"></input>
+                            <Link to="/Main">   <button className="btn_conex">Inscripción</button></Link>
+                            <br></br>    <button className="btn-">Enviar</button>
+                            <br />  <Link to="/"><button className="btn-log">Volver</button></Link>
                         </div>
 
                     </form>

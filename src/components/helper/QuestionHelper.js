@@ -20,20 +20,25 @@ export const loadQuestions = async (url) => {
 };
 
 const convertQuestionsFromAPI = (rawQuestions) => {
-    return (Object.values(rawQuestions).map((loadedQuestion) => {
-        const formattedQuestion = {
-            question: loadedQuestion.Question,
-            answerChoices: [loadedQuestion.Incorrect1, loadedQuestion.Incorrect2, loadedQuestion.Incorrect3]
-        };
+    console.log(rawQuestions)
+    return (
 
-        formattedQuestion.answer = Math.floor(Math.random() * 4);
+        Object.entries(rawQuestions).map(([id, loadedQuestion]) => {
+            const formattedQuestion = {
+                question: loadedQuestion.Question,
+                answerChoices: [loadedQuestion.Incorrect1, loadedQuestion.Incorrect2, loadedQuestion.Incorrect3],
+                question_id: id
+            };
 
-        formattedQuestion.answerChoices.splice(
-            formattedQuestion.answer,
-            0,
-            loadedQuestion.Answer
-        );
+            formattedQuestion.answer = Math.floor(Math.random() * 4);
 
-        return formattedQuestion;
-    }));
+            formattedQuestion.answerChoices.splice(
+                formattedQuestion.answer,
+                0,
+                loadedQuestion.Answer
+            );
+            console.log("el ID es:****" + id)
+            console.log(loadedQuestion)
+            return formattedQuestion;
+        }));
 };

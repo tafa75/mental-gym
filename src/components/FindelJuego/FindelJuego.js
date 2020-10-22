@@ -15,7 +15,7 @@
 //         loadLevelQuestions
 //     } = props;
 
-//     const API_PUBLIC_KEY = 'AIzaSyB7-nruCZx_5pOTHUsGljptrw_YixUa42M'
+   
  
 
 //     const [asked, setAsked] = useState([]);

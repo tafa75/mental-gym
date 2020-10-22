@@ -1,4 +1,4 @@
-.loader {
+.cotainer {
     border: 10px solid var(--light-grey-color);
     border-radius: 50%;
     border-top: 10px solid var(--dark-red-color);
@@ -9,7 +9,7 @@
     margin: 40px auto 20px;
   }
   
-  .loaderText {
+  .btn {
     text-align: center;
     color: var(--white-color);
   }

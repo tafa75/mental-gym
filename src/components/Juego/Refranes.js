@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import Question from '../Juego/Question';
 import { loadQuestions } from '../helper/QuestionHelper';
 import Main from '../Main/Main';
@@ -10,7 +11,7 @@ export default function Refranes({ history }) {
     const [score, setScore] = useState(0);
     const [questionNumber, setQuestionNumber] = useState(0);
     const [done, setDone] = useState(false);
-    const [questions, setQuestions] = useState([{ question: "", answerChoices: ["", "", "", ""], answer: 0 }])
+    const [questions, setQuestions] = useState([{ question: "Aquí aparecerán las preguntas", answerChoices: ["Aqui", "estarán", "las", "respuestas"], answer: 0 }])
     useEffect(() => {
 
         loadQuestions('http://tripu.herokuapp.com/datos?juego=refranes&cantidad=10')
@@ -25,8 +26,6 @@ export default function Refranes({ history }) {
             })
     }, []);
 
-
-   
     const scoreSaved = () => {
         history.push('/');
     };
@@ -74,15 +73,19 @@ export default function Refranes({ history }) {
 
             {!loading && !done && currentQuestion && (
                 <div>
-                    <Main score={score} questionNumber={questionNumber} />
+                    {/* <Main score={score} questionNumber={questionNumber} /> */}
+                    <h1>Refranes</h1>
                     <Question
                         question={currentQuestion}
                         changeQuestion={changeQuestion}
                     />
+
+                    <Link to='/Main'><button className="btn">Volver</button></Link>
                 </div>
+
             )}
 
-            {done && <SaveScoreForm score={score} scoreSaved={scoreSaved} />}
+            {done && <SaveScoreForm game="refranes" score={score} scoreSaved={scoreSaved} />}
         </>
     );
 }

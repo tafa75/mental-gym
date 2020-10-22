@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { Link } from 'react-router-dom'
 import FirebaseContext from '../Firebase'
 import firebase from "firebase/app";
+import { UserConsumer } from "../App/contextUser"
+import { Link, useHistory } from 'react-router-dom'
 
 import "firebase/auth"
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -11,10 +12,12 @@ const Login = (props) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [userId, setUserId] = useState("")
 
     const firebaseContext = useContext(FirebaseContext);
     const [btn, setBtn] = useState(false);
     const [error, setError] = useState('');
+    let history = useHistory();
 
     useEffect(() => {
         if (password.length > 5 && email !== '') {
@@ -24,40 +27,52 @@ const Login = (props) => {
         }
     }, [password, email, btn])
 
-    const handleSubmit = e => {
+    const submitUser = funcionContext => {
+        let usuarioId;
+        let userNombre;
         console.log("handle submit")
         console.log(email);
         console.log(password);
-        // firebase.auth().loginUser(email, password, authGoogle)
-        //     .then(user => {
-
-        //         setEmail('');
-        //         setPassword('');
-        //         props.history.push('/Main');
-        //     })
-        //     .catch(error => {
-        //         setError(error);
-        //         setEmail('');
-        //         setPassword('');
-        //     })
 
         firebase.auth().signInWithEmailAndPassword(email, password)
-        .then(() => window.location.replace('/Main'))
-        .catch(function (error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.log(errorCode)
-            console.log(errorMessage);
-            // ...
-        });
+            .then((data) => {
+
+                console.log("User ID :- ", data.user.uid); // Lee el ID
+
+                usuarioId = data.user.uid
+                funcionContext(data.user.uid)
+                // history.push('/Main')
+                return (data.user.uid)
+            }).then((userUid) => {
+
+                const zapato = firebase.firestore().collection("users").doc(userUid)
+                const perro = zapato.get();
+                console.log(perro);
+                return firebase.firestore().collection("users").doc(userUid).get()
+
+            }).then(doc => {
 
 
-        e.preventDefault();
+
+
+                userNombre = doc.data().user
+                funcionContext({ "nombre": userNombre, "id": usuarioId })
+
+            })
+            .catch(function (error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log(errorCode)
+                console.log(errorMessage);
+                // ...
+            });
+
 
 
 
     }
+
     function authGoogle(e) {
 
 
@@ -70,6 +85,7 @@ const Login = (props) => {
                 var token = result.credential.accessToken;
                 var user = result.user;
                 props.history.push('/Main');
+                return (token, user)
             }).catch(function (error) {
 
                 var errorCode = error.code;
@@ -80,42 +96,56 @@ const Login = (props) => {
             });
 
     }
-
     return (
-        <div className="signUpLoginBox">
+        <UserConsumer>
+            {(value) =>
+                (
+                    <div className="signUpLoginBox">
+                        <div className="formContent">
+
+                            {error !== '' && <span>{error.message}</span>}
 
 
-            <div className="formContent">
+                            <h1>{value.contexto.nombre}</h1>
+                            <h1>{value.contexto.id}</h1>
 
-                {error !== '' && <span>{error.message}</span>}
+                            <img src="./media/Logo-1.png" alt="logo" class="center" />
 
-                <form onSubmit={handleSubmit}>
+                            <div className="inputBox">
+                                <input onChange={e => setEmail(e.target.value)} type="email" autoComplete="on" required />
+                                <label htmlFor="email">Email</label>
+                            </div>
 
-                    <h2>Connexion</h2>
+                            <div className="inputBox">
+                                <input onChange={e => setPassword(e.target.value)} type="password" required />
+                                <label htmlFor="password">Contraseña</label>
+                            </div>
+                            <div style={{ textAlign: "center" }}>
 
-                    <div className="inputBox">
-                        <input onChange={e => setEmail(e.target.value)} type="email" autoComplete="off" required />
-                        <label htmlFor="email">Email</label>
+                                {/* <Link to="/Main"><button className="btn_conex">Conexión</button></Link> */}
+                               <br></br> <Link to="/Main">   <button className="btn_conex" onClick={() => submitUser(value.metodo)}>Conexión</button></Link>
+
+                                <br></br>   <button onClick={authGoogle}>Google</button>
+
+                                <div className="linkContainer" style={{ display: "inline" }}>
+                                <br></br>    <Link to="/Signup"><button className="btn-sign">Inscríbete</button></Link><br></br>
+
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
-
-                    <div className="inputBox">
-                        <input onChange={e => setPassword(e.target.value)} type="password" required />
-                        <label htmlFor="password">Contraseña</label>
-                    </div>
-
-                    <input type="submit" value="conexion"></input>
-
-                    <button onClick={authGoogle}>Google</button>
-                </form>
-                <div className="linkContainer">
-                    <Link className="simpleLink" to="/signup">inscribete</Link>
-                    <br />
-                </div>
-            </div>
-        </div>
+                )
+            }
 
 
+
+        </UserConsumer >
     )
+
+
 }
+
+
 
 export default Login

@@ -18,7 +18,7 @@
     flex: 0 1 35%;
     align-items: flex-start;
   }
-  .btn-welcome {
+  .btn {
     border: 2px solid var(--white-color);
     color: var(--white-color);
     padding: 12px 25px;
@@ -28,17 +28,11 @@
     font-size: 19px;
     text-align: center;
     text-decoration: none;
-    margin-top: 150px;
+    margin-top: 100px;
   }
   
-  .btn-welcome:hover {
+  .btn:hover {
     border: 2px solid var(--white-color);
     color: var(--red-color);
     background-color: var(--white-color);
-  }
-  toastify-color-welcome {
-    color: var(--black-color);
-  }
-  .toastify-color {
-    color: var(--white-color);
   }

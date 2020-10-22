@@ -1,4 +1,6 @@
-
+h2{
+  color:white;
+}
 .signUpLoginBox {
     background-repeat: repeat;
     -webkit-box-shadow: inset 0px 143px 108px -18px rgba(0, 0, 0, 0.39);
@@ -101,7 +103,6 @@
     font-style: italic;
   }
   
-  /* Form buttons */
   .formContent button {
     margin-left: 0;
     display: block;
@@ -159,4 +160,23 @@
   
   .simpleLink:hover {
     color: var(--red-color);
+  }
+
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .centrar{
+    margin: auto;
+
+
+    width: 60%;
+  
+  
+    border: 5px solid #FFFF00;
+  
+  
+    padding: 10px;
   }

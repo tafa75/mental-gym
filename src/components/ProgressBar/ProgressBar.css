@@ -1,0 +1,12 @@
+#progressBar {
+  width: 20rem;
+  height: 4rem;
+  border: 0.3rem solid green;
+  margin-top: 1.5rem;
+}
+
+#progressBarFull {
+  height: 3.4rem;
+  background-color: green;
+  width: 0%;
+}

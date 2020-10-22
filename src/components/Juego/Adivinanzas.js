@@ -3,6 +3,7 @@ import Question from '../Juego/Question';
 import { loadQuestions } from '../helper/QuestionHelper';
 import Main from '../Main/Main';
 import SaveScoreForm from '../CargarDatos/SaveScoreForm';
+import { Link } from 'react-router-dom';
 
 export default function Adivinanza({ history }) {
 
@@ -11,7 +12,7 @@ export default function Adivinanza({ history }) {
     const [score, setScore] = useState(0);
     const [questionNumber, setQuestionNumber] = useState(0);
     const [done, setDone] = useState(false);
-    const [questions, setQuestions] = useState([{ question: "", answerChoices: ["", "", "", ""], answer: 0 }]);
+    const [questions, setQuestions] = useState([{ question: "Aquí aparecerán las preguntas", answerChoices: ["aqui", "estarán", "las", "respuestas"], answer: 0 }]);
 
 
     useEffect(() => {
@@ -64,6 +65,7 @@ export default function Adivinanza({ history }) {
         if (!currentQuestion && questions.length) {
             changeQuestion();
         }
+        console.log(questions)
     }, [currentQuestion, questions, changeQuestion]);
 
     return (
@@ -72,15 +74,17 @@ export default function Adivinanza({ history }) {
 
             {!loading && !done && currentQuestion && (
                 <div>
-                    <Main score={score} questionNumber={questionNumber} />
+                    {/* <Main score={score} questionNumber={questionNumber} /> */}
+                    <h1>Adivinanzas</h1>
                     <Question
                         question={currentQuestion}
                         changeQuestion={changeQuestion}
                     />
+                    <Link to='/Main'><button className="btn">Volver</button></Link>
                 </div>
             )}
 
-            {done && <SaveScoreForm score={score} scoreSaved={scoreSaved} />}
+            {done && <SaveScoreForm game="adivinanzas" score={score} scoreSaved={scoreSaved} />}
         </>
     );
 }
