@@ -123,7 +123,7 @@ const Login = (props) => {
                             <div style={{ textAlign: "center" }}>
 
                                 {/* <Link to="/Main"><button className="btn_conex">Conexión</button></Link> */}
-                               <br></br> <Link to="/Main">   <button className="btn_conex" onClick={() => submitUser(value.metodo)}>Conexión</button></Link>
+                               <br></br>  <Link to="/Main"> <button className="btn_conex" onClick={() => submitUser(value.metodo)}>Conexión</button></Link>
 
                                 <br></br>   <button onClick={authGoogle}>Google</button>
 

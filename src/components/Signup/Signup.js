@@ -1,5 +1,7 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import {useHistory} from "react-router-dom";
 import "firebase/auth"; import firebase from "firebase/app"
 import '../Signup/Signup.css';
 import "firebase/firestore"
@@ -17,6 +19,7 @@ const Signup = (props) => {
     const [sex, setSex] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const firebase = useFirebaseApp();
+    const hystory = useHistory();
 
     const data = {
         user: '',
@@ -55,6 +58,7 @@ const Signup = (props) => {
 
     }
     const handleSubmit = e => {
+    
         e.preventDefault()
         const userData = {
             "user": user,
@@ -86,7 +90,7 @@ const Signup = (props) => {
                 // ...
                 console.log("hola error")
             });
-
+                 props.history.push('/Main')
     }
 
 
@@ -131,10 +135,8 @@ const Signup = (props) => {
                             <input onChange={event => setAge(event.target.value)} type="texty" id="aut" autoComplete="off" required />
                             <label htmlFor="edad">Autonomía</label>
                         </div>
-
                         <br></br>   <div>
-                            <Link to="/Main">   <button className="btn_conex">Inscripción</button></Link>
-                            <br></br>    <button className="btn-">Enviar</button>
+                                <br></br>    <button onClick={handleSubmit} className="btn-">Enviar</button>
                             <br />  <Link to="/"><button className="btn-log">Volver</button></Link>
                         </div>
 
