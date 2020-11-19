@@ -17,7 +17,7 @@ export default function Adivinanza({ history }) {
 
     useEffect(() => {
 
-        loadQuestions('http://tripu.herokuapp.com/datos?juego=adivinanzas&cantidad=10')
+        loadQuestions('http://mental-gym.herokuapp.com/datos?juego=adivinanzas&cantidad=10')
             .then((data) => {
 
                 setQuestions(questions => [...data])

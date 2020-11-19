@@ -44,10 +44,7 @@ const Login = (props) => {
                 // history.push('/Main')
                 return (data.user.uid)
             }).then((userUid) => {
-
-                const zapato = firebase.firestore().collection("users").doc(userUid)
-                const perro = zapato.get();
-                console.log(perro);
+            
                 return firebase.firestore().collection("users").doc(userUid).get()
 
             }).then(doc => {
@@ -109,7 +106,7 @@ const Login = (props) => {
                             <h1>{value.contexto.nombre}</h1>
                             <h1>{value.contexto.id}</h1>
 
-                            <img src="./media/Logo-1.png" alt="logo" class="center" />
+                            <img src="./media/Logo-1.png" alt="logo" className="center" />
 
                             <div className="inputBox">
                                 <input onChange={e => setEmail(e.target.value)} type="email" autoComplete="on" required />

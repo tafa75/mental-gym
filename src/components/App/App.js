@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Adivinanzas from "../Juego/Adivinanzas"
 import Refranes from '../Juego/Refranes'
 import Header from '../Header/Header'
-import Nav from '../Nav/Nav'
+import Gentilicios from '../Juego/Gentilicios'
+import Provincias from '../Juego/Provincias'
+//import Nav from '../Nav/Nav'
 import Main from '../Main/Main'
 import Login from '../Login/Login'
 import Signup from '../Signup/Signup'
@@ -31,6 +33,8 @@ function App() {
               <Route path="/signup" component={Signup} />
               <Route path="/Adivinanzas" component={Adivinanzas} />
               <Route path="/Refranes" component={Refranes} />
+              <Route path="/Gentilicios" component={Gentilicios} />
+              <Route path="/Provincias" component={Provincias} />
             </Switch>
 
           </FirebaseAppProvider>

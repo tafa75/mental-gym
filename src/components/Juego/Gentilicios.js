@@ -1,30 +1,30 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
 import Question from '../Juego/Question';
 import { loadQuestions } from '../helper/QuestionHelper';
 import Main from '../Main/Main';
 import SaveScoreForm from '../CargarDatos/SaveScoreForm';
+import { Link } from 'react-router-dom';
 
-export default function Refranes({ history }) {
+export default function Adivinanza({ history }) {
+
     const [currentQuestion, setCurrentQuestion] = useState(null);
     const [loading, setLoading] = useState(true);
     const [score, setScore] = useState(0);
     const [questionNumber, setQuestionNumber] = useState(0);
     const [done, setDone] = useState(false);
-    const [questions, setQuestions] = useState([{ question: "Aquí aparecerán las preguntas", answerChoices: ["Aqui", "estarán", "las", "respuestas"], answer: 0 }])
+    const [questions, setQuestions] = useState([{ question: "Aquí aparecerán las preguntas", answerChoices: ["aqui", "estarán", "las", "respuestas"], answer: 0 }]);
+
+
     useEffect(() => {
 
-        loadQuestions('http://mental-gym.herokuapp.com/datos?juego=refranes&cantidad=10')
+        loadQuestions('http://mental-gym.herokuapp.com/datos?juego=gentilicios&cantidad=10')
             .then((data) => {
 
                 setQuestions(questions => [...data])
-
-
-
-
                 return "hola"
             })
     }, []);
+
 
     const scoreSaved = () => {
         history.push('/');
@@ -65,6 +65,7 @@ export default function Refranes({ history }) {
         if (!currentQuestion && questions.length) {
             changeQuestion();
         }
+        console.log(questions)
     }, [currentQuestion, questions, changeQuestion]);
 
     return (
@@ -74,18 +75,16 @@ export default function Refranes({ history }) {
             {!loading && !done && currentQuestion && (
                 <div>
                     {/* <Main score={score} questionNumber={questionNumber} /> */}
-                    <h1>Refranes</h1>
+                    <h1>Gentelicios</h1>
                     <Question
                         question={currentQuestion}
                         changeQuestion={changeQuestion}
                     />
-
                     <Link to='/Main'><button className="btn">Volver</button></Link>
                 </div>
-
             )}
 
-            {done && <SaveScoreForm game="refranes" score={score} scoreSaved={scoreSaved} />}
+            {done && <SaveScoreForm game="adivinanzas" score={score} scoreSaved={scoreSaved} />}
         </>
     );
 }

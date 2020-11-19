@@ -19,8 +19,7 @@ export default function Home() {
             snapshot.forEach(doc => userScores.push(doc)) // mete al MAP
         })
             .catch(err => { console.log(err) })
-        console.log("perro")
-        userScores.map((scr) => db.collection("game").doc(scr).get().then((zapato) => console.log(zapato)))
+
 
 
 
@@ -47,6 +46,12 @@ export default function Home() {
                         </Link>
                         <Link to="/Adivinanzas" className="btn">
                             Adivinanzas
+                        </Link>
+                        <Link to="/Gentilicios" className="btn">
+                           Gentilicios
+                        </Link>
+                        <Link to="/Provincias" className="btn">
+                            Provincias
                         </Link>
                     </>
                 )

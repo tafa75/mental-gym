@@ -36,7 +36,6 @@ export default function SaveScoreForm({ score, game }) {
             .add(gameData)
             .then(data => {// guardado
                 setSaved(true)
-                console.log("***************************")
                 console.log(saved)
                 console.log(data)
             })
@@ -69,7 +68,7 @@ export default function SaveScoreForm({ score, game }) {
                     )
                 }
             </UserConsumer >
-            {saved == true ? <p>Has guardado tu puntuacion</p> : <p>No has guardado tu puntucion</p>}
+            {saved === true ? <p>Has guardado tu puntuacion</p> : <p>No has guardado tu puntucion</p>}
 
 
             <img src="./media/Logo-1.png" alt="logo" />
