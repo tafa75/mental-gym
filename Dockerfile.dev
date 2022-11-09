@@ -1,7 +1,7 @@
 # container app "mental_gym" - Development v.0.1.0
 # by tafabarham | <date>
 # pull official base image
-FROM node:10.19
+FROM node:19.0.0
 
 # set working directory
 WORKDIR "/mental-gym"
